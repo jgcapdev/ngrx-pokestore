@@ -1,6 +1,5 @@
 import { createSelector } from '@ngrx/store';
 import { CartStore } from 'src/app/models/cart.state';
-import { PokeStore } from 'src/app/models/pokemons.state';
 import { AppState } from '../app.state';
 
 export const selectCartFeature = (state: AppState) => state.cart;
