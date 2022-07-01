@@ -1,0 +1,9 @@
+.cart-counter {
+  color: white;
+  border-radius: 10px;
+  height: 27px;
+  margin-top: 4px;
+  padding-right: 3px;
+  padding-left: 3px;
+  background-color: tomato;
+}
