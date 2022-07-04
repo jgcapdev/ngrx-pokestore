@@ -1,27 +1,48 @@
 import { createReducer, on } from '@ngrx/store';
 import { CartStore } from 'src/app/models/cart.state';
-import { PokeStore } from 'src/app/models/pokemons.state';
-import { loadCart, loadedCart, loadedCartError } from '../actions/cart.actions';
+import {
+  addToCart,
+  getCartItems,
+  loadCart,
+  loadedCart,
+  loadedCartError,
+} from '../actions/cart.actions';
 
 export const initialState: CartStore = {
   loading: false,
   error: false,
   pokemons: [],
-  quantity: 0,
 };
 
 export const cartReducer = createReducer(
   initialState,
   on(loadCart, (state) => {
-    return { ...state, loading: true, error: false, pokemons: [], quantity: 0 };
+    return { ...state, loading: true, error: false, pokemons: [] };
   }),
-  on(loadedCart, (state, { pokemons, quantity }) => {
+  on(loadedCart, (state, { pokemons }) => {
     return {
       ...state,
       loading: false,
       error: false,
-      quantity,
       pokemons,
+    };
+  }),
+  on(addToCart, (state, { pokemon }) => {
+    return {
+      ...state,
+      loading: false,
+      error: false,
+      pokemons: [
+        ...state.pokemons.filter((pk) => pk.name != pokemon.name),
+        ...[pokemon],
+      ],
+    };
+  }),
+  on(getCartItems, (state) => {
+    return {
+      ...state,
+      loading: false,
+      error: false,
     };
   }),
   on(loadedCartError, (state) => {

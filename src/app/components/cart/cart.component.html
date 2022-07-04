@@ -1,1 +1,28 @@
 <h1 class="text-center">Cart</h1>
+
+<b class="text-center" *ngIf="loading$ | async">Cargando...</b>
+
+<table class="table table-striped" *ngIf="items.length">
+  <thead>
+    <tr class="text-center">
+      <th>Pokemon</th>
+      <th>Quantity</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let pokemon of pokemons">
+      <td class="text-center">
+        <a href="{{ pokemon.url }}" target="_blank">{{
+          pokemon.name | uppercase
+        }}</a>
+      </td>
+      <td>{{ pokemon.quantity }}</td>
+      <td>
+        <div class="text-center">
+          <button type="button" class="btn btn-danger mx-2">Delete</button>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>

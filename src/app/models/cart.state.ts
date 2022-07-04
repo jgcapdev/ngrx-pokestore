@@ -1,8 +1,7 @@
 import { PokemonModel } from './Pokemon.interface';
 
 export interface CartStore {
-  pokemons: ReadonlyArray<PokemonModel>;
-  quantity: number;
+  pokemons: PokemonModel[];
   loading: boolean;
   error: boolean;
 }

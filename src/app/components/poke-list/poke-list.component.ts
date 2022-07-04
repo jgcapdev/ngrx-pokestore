@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { PokemonServiceService } from 'src/app/services/pokemon-service.service';
@@ -12,6 +12,12 @@ import {
   loadedPokemons,
   loadPokemons,
 } from 'src/app/state/actions/pokemon.actions';
+import { PokemonModel } from 'src/app/models/Pokemon.interface';
+import {
+  addToCart,
+  getCartItems,
+  loadedCart,
+} from 'src/app/state/actions/cart.actions';
 
 @Component({
   selector: 'app-poke-list',
@@ -22,6 +28,7 @@ export class PokeListComponent implements OnInit {
   loading$: Observable<boolean> = this.store.select(selectLoading);
   error$: Observable<boolean> = this.store.select(selectError);
   pokemons$: Observable<any> = new Observable();
+  cart$: Observable<any> = new Observable();
 
   constructor(
     private store: Store<AppState>,
@@ -37,4 +44,11 @@ export class PokeListComponent implements OnInit {
       this.pokemons$ = this.store.select(selectListPokemons);
     });
   }
+
+  addPokemon(pokemon: any) {
+    this.store.dispatch(addToCart({ pokemon }));
+    this.store.dispatch(getCartItems());
+  }
+
+  deletePokemon(pokemon: PokemonModel) {}
 }

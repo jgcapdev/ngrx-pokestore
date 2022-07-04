@@ -18,10 +18,10 @@ export const selectCart = createSelector(
   }
 );
 
-export const selectQuantity = createSelector(
+export const selectItems = createSelector(
   selectCartFeature,
   (state: CartStore) => {
-    return state.quantity;
+    return state.pokemons.length;
   }
 );
 

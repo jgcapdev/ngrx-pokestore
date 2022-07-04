@@ -1,6 +1,7 @@
 <h1 class="text-center">List of Pokemons</h1>
 
 <b class="text-center" *ngIf="loading$ | async">Cargando...</b>
+<b class="text-center" *ngIf="error$ | async">Se ha producido un error</b>
 
 <table class="table table-striped">
   <thead>
@@ -18,8 +19,20 @@
       </td>
       <td>
         <div class="text-center">
-          <button type="button" class="btn btn-primary mx-2">Add</button>
-          <button type="button" class="btn btn-danger">Delete</button>
+          <button
+            (click)="addPokemon(pokemon)"
+            type="button"
+            class="btn btn-primary mx-2"
+          >
+            Add
+          </button>
+          <button
+            (click)="deletePokemon(pokemon)"
+            type="button"
+            class="btn btn-danger"
+          >
+            Delete
+          </button>
         </div>
       </td>
     </tr>
