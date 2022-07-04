@@ -6,6 +6,7 @@ import {
   loadCart,
   loadedCart,
   loadedCartError,
+  removeToCart,
 } from '../actions/cart.actions';
 
 export const initialState: CartStore = {
@@ -33,7 +34,26 @@ export const cartReducer = createReducer(
       loading: false,
       error: false,
       pokemons: [
-        ...state.pokemons.filter((pk) => pk.name != pokemon.name),
+        ...state.pokemons.filter((pk) => pk.name !== pokemon.name),
+        ...[pokemon],
+      ],
+    };
+  }),
+  on(removeToCart, (state, { pokemon }) => {
+    /*
+     const index = this.cart.indexOf(pokemon);
+
+    if (index > -1) {
+      this.cart.splice(index, 1);
+      console.log('Quitado');
+    }
+    */
+    return {
+      ...state,
+      loading: false,
+      error: false,
+      pokemons: [
+        ...state.pokemons.filter((pk) => pk.name == pokemon.name),
         ...[pokemon],
       ],
     };

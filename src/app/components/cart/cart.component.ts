@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { loadCart, loadedCart } from 'src/app/state/actions/cart.actions';
+import {
+  getCartItems,
+  loadCart,
+  loadedCart,
+} from 'src/app/state/actions/cart.actions';
 import { AppState } from 'src/app/state/app.state';
 import {
   selectCart,
@@ -20,20 +24,17 @@ export class CartComponent implements OnInit {
   items: any[] = [];
   loading$: Observable<boolean> = this.store.select(selectLoading);
   pokemons: PokemonModel[] = [];
+  counter: number = 0;
 
-  constructor(
-    private store: Store<AppState>,
-    private cartService: CartService
-  ) {}
+  constructor(private store: Store<AppState>) {}
 
   ngOnInit(): void {
     this.store.dispatch(loadCart()); // Cargando carrito
+    this.store.dispatch(getCartItems());
 
     this.cart$ = this.store.select(selectCart); // Cogiendo el carro de store
 
-    this.cart$.subscribe((pokemon) => {
-      console.log(this.pokemons);
-    });
+    this.cart$.subscribe((pokemon) => {});
 
     this.store.dispatch(loadedCart({ pokemons: this.pokemons })); // Accion
   }

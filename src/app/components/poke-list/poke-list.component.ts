@@ -17,6 +17,7 @@ import {
   addToCart,
   getCartItems,
   loadedCart,
+  removeToCart,
 } from 'src/app/state/actions/cart.actions';
 
 @Component({
@@ -50,5 +51,8 @@ export class PokeListComponent implements OnInit {
     this.store.dispatch(getCartItems());
   }
 
-  deletePokemon(pokemon: PokemonModel) {}
+  deletePokemon(pokemon: PokemonModel) {
+    this.store.dispatch(removeToCart({ pokemon }));
+    this.store.dispatch(getCartItems());
+  }
 }
