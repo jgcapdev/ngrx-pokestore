@@ -15,6 +15,8 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 import { CartComponent } from './components/cart/cart.component';
 import { cartReducer } from './state/reducers/cart.reducer';
 import { pokemonsReducer } from './state/reducers/pokemons.reducer';
+import { EffectsFeatureModule, EffectsModule } from '@ngrx/effects';
+import { PokemonsEffects } from './state/effects/pokemons.effects';
 
 @NgModule({
   declarations: [
@@ -35,6 +37,7 @@ import { pokemonsReducer } from './state/reducers/pokemons.reducer';
       logOnly: environment.production,
     }),
     HttpClientModule,
+    EffectsModule.forRoot([PokemonsEffects]),
   ],
   providers: [],
   bootstrap: [AppComponent],
