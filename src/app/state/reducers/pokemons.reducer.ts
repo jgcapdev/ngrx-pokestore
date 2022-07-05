@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import { PokeStore } from 'src/app/models/pokemons.state';
+import { PokeStore } from 'src/app/core/models/pokemons.state';
 import {
   loadedPokemons,
   loadPokemons,

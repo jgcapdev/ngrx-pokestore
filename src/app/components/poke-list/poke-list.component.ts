@@ -12,13 +12,7 @@ import {
   loadedPokemons,
   loadPokemons,
 } from 'src/app/state/actions/pokemon.actions';
-import { PokemonModel } from 'src/app/models/Pokemon.interface';
-import {
-  addToCart,
-  getCartItems,
-  loadedCart,
-  removeToCart,
-} from 'src/app/state/actions/cart.actions';
+import { addToCart } from 'src/app/state/actions/cart.actions';
 
 @Component({
   selector: 'app-poke-list',
@@ -48,11 +42,5 @@ export class PokeListComponent implements OnInit {
 
   addPokemon(pokemon: any) {
     this.store.dispatch(addToCart({ pokemon }));
-    this.store.dispatch(getCartItems());
-  }
-
-  deletePokemon(pokemon: PokemonModel) {
-    this.store.dispatch(removeToCart({ pokemon }));
-    this.store.dispatch(getCartItems());
   }
 }

@@ -1,12 +1,9 @@
 import { createAction, props } from '@ngrx/store';
-import { PokemonModel } from 'src/app/models/Pokemon.interface';
+import { PokemonModel } from 'src/app/core/models/Pokemon.interface';
 
 export const loadCart = createAction('[Cart List] Load Cart');
 
-export const loadedCart = createAction(
-  '[Cart List] Loaded success',
-  props<{ pokemons: PokemonModel[] }>()
-);
+export const loadedCart = createAction('[Cart List] Loaded success');
 
 export const addToCart = createAction(
   '[Cart List] Add To cart',

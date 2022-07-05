@@ -2,17 +2,17 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import {
-  getCartItems,
   loadCart,
   loadedCart,
+  removeToCart,
 } from 'src/app/state/actions/cart.actions';
 import { AppState } from 'src/app/state/app.state';
 import {
   selectCart,
+  selectError,
   selectLoading,
 } from 'src/app/state/selectors/cart.selectors';
-import { PokemonModel } from 'src/app/models/Pokemon.interface';
-import { CartService } from 'src/app/services/cart.service';
+import { PokemonModel } from 'src/app/core/models/Pokemon.interface';
 
 @Component({
   selector: 'app-cart',
@@ -21,21 +21,20 @@ import { CartService } from 'src/app/services/cart.service';
 })
 export class CartComponent implements OnInit {
   cart$: Observable<any> = new Observable();
-  items: any[] = [];
+  items$: Observable<any> = new Observable();
   loading$: Observable<boolean> = this.store.select(selectLoading);
-  pokemons: PokemonModel[] = [];
-  counter: number = 0;
+  error$: Observable<boolean> = this.store.select(selectError);
 
   constructor(private store: Store<AppState>) {}
 
   ngOnInit(): void {
-    this.store.dispatch(loadCart()); // Cargando carrito
-    this.store.dispatch(getCartItems());
+    this.store.dispatch(loadCart());
+    this.store.dispatch(loadedCart());
 
-    this.cart$ = this.store.select(selectCart); // Cogiendo el carro de store
+    this.items$ = this.store.select(selectCart);
+  }
 
-    this.cart$.subscribe((pokemon) => {});
-
-    this.store.dispatch(loadedCart({ pokemons: this.pokemons })); // Accion
+  deletePokemon(pokemon: PokemonModel) {
+    this.store.dispatch(removeToCart({ pokemon }));
   }
 }

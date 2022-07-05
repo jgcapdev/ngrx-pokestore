@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { PokemonModel } from 'src/app/models/Pokemon.interface';
+import { PokemonModel } from 'src/app/core/models/Pokemon.interface';
 
 export const loadPokemons = createAction('[Pokemon List] Load Pokemons');
 

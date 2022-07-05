@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/state/app.state';
-import { Observable } from 'rxjs';
 import { selectItems } from 'src/app/state/selectors/cart.selectors';
 
 @Component({
@@ -10,11 +9,13 @@ import { selectItems } from 'src/app/state/selectors/cart.selectors';
   styleUrls: ['./nav.component.css'],
 })
 export class NavComponent implements OnInit {
-  items$: Observable<any> = new Observable();
+  counter: number = 0;
 
   constructor(private store: Store<AppState>) {}
 
   ngOnInit(): void {
-    this.items$ = this.store.select(selectItems);
+    this.store.select(selectItems).subscribe((item) => {
+      this.counter = item;
+    });
   }
 }

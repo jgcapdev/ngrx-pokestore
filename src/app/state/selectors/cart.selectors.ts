@@ -1,5 +1,5 @@
 import { createSelector } from '@ngrx/store';
-import { CartStore } from 'src/app/models/cart.state';
+import { CartStore } from 'src/app/core/models/cart.state';
 import { AppState } from '../app.state';
 
 export const selectCartFeature = (state: AppState) => state.cart;

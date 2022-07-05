@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import { CartStore } from 'src/app/models/cart.state';
+import { CartStore } from 'src/app/core/models/cart.state';
 import {
   addToCart,
   getCartItems,
@@ -18,14 +18,13 @@ export const initialState: CartStore = {
 export const cartReducer = createReducer(
   initialState,
   on(loadCart, (state) => {
-    return { ...state, loading: true, error: false, pokemons: [] };
+    return { ...state, loading: true, error: false };
   }),
-  on(loadedCart, (state, { pokemons }) => {
+  on(loadedCart, (state) => {
     return {
       ...state,
       loading: false,
       error: false,
-      pokemons,
     };
   }),
   on(addToCart, (state, { pokemon }) => {
@@ -40,22 +39,11 @@ export const cartReducer = createReducer(
     };
   }),
   on(removeToCart, (state, { pokemon }) => {
-    /*
-     const index = this.cart.indexOf(pokemon);
-
-    if (index > -1) {
-      this.cart.splice(index, 1);
-      console.log('Quitado');
-    }
-    */
     return {
       ...state,
       loading: false,
       error: false,
-      pokemons: [
-        ...state.pokemons.filter((pk) => pk.name == pokemon.name),
-        ...[pokemon],
-      ],
+      pokemons: [...state.pokemons.filter((pk) => pk.name !== pokemon.name)],
     };
   }),
   on(getCartItems, (state) => {
@@ -66,6 +54,6 @@ export const cartReducer = createReducer(
     };
   }),
   on(loadedCartError, (state) => {
-    return { ...state, loading: false, error: true };
+    return { ...state, loading: false, error: true, pokemons: [] };
   })
 );
