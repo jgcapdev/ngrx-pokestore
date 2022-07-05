@@ -3,6 +3,10 @@
 <b class="text-center" *ngIf="loading$ | async">Cargando...</b>
 <b class="text-center" *ngIf="error$ | async">Se ha producido un error</b>
 
+<p class="text-center display-4" *ngIf="(items$ | async)?.length == 0">
+  Your car is empty. Let's start adding some pokemons!
+</p>
+
 <table class="table table-striped" *ngIf="(items$ | async)?.length != 0">
   <thead>
     <tr class="text-center">
