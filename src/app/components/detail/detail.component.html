@@ -1,0 +1,12 @@
+<h1 class="text-center">Pokemon details</h1>
+
+<div class="card mx-auto mt-4" style="width: 18rem">
+  <img src="{{ pokemonData.image }}" class="card-img-top" alt="..." />
+  <div class="card-body">
+    <h5 class="card-title text-center">{{ pokemonData.name | uppercase }}</h5>
+
+    <a [routerLink]="['/cart']" class="d-block btn btn-warning text-center"
+      >Go to cart</a
+    >
+  </div>
+</div>

@@ -21,6 +21,8 @@ import { PokemonContainerComponent } from './containers/pokemon-container/pokemo
 import { CartContainerComponent } from './containers/cart-container/cart-container.component';
 import { HomeContainerComponent } from './containers/home-container/home-container.component';
 import { NavContainerComponent } from './containers/nav-container/nav-container.component';
+import { DetailComponent } from './components/detail/detail.component';
+import { DetailContainerComponent } from './containers/detail-container/detail-container.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +37,8 @@ import { NavContainerComponent } from './containers/nav-container/nav-container.
     CartContainerComponent,
     HomeContainerComponent,
     NavContainerComponent,
+    DetailComponent,
+    DetailContainerComponent,
   ],
   imports: [
     BrowserModule,

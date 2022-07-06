@@ -13,7 +13,7 @@
   <thead>
     <tr class="text-center">
       <th>Pokemon</th>
-      <th>Actions</th>
+      <th colspan="2">Actions</th>
     </tr>
   </thead>
   <tbody>
@@ -25,6 +25,13 @@
       </td>
       <td>
         <div class="text-center">
+          <button
+            type="button"
+            [routerLink]="['/detail', pokemon.name]"
+            class="btn btn-success mx-2"
+          >
+            View details
+          </button>
           <button
             (click)="deletePokemon(pokemon)"
             type="button"
