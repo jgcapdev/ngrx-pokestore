@@ -1,17 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Observable } from 'rxjs';
-import {
-  loadCart,
-  loadedCart,
-  removeToCart,
-} from 'src/app/state/actions/cart.actions';
-import { AppState } from 'src/app/state/app.state';
-import {
-  selectCart,
-  selectError,
-  selectLoading,
-} from 'src/app/state/selectors/cart.selectors';
 import { PokemonModel } from 'src/app/core/models/Pokemon.interface';
 
 @Component({
@@ -20,21 +8,18 @@ import { PokemonModel } from 'src/app/core/models/Pokemon.interface';
   styleUrls: ['./cart.component.css'],
 })
 export class CartComponent implements OnInit {
-  cart$: Observable<any> = new Observable();
-  items$: Observable<any> = new Observable();
-  loading$: Observable<boolean> = this.store.select(selectLoading);
-  error$: Observable<boolean> = this.store.select(selectError);
+  @Input() cart$: Observable<any> = new Observable();
+  @Input() items$: Observable<any> = new Observable();
+  @Input() loading$: Observable<boolean> = new Observable();
+  @Input() error$: Observable<boolean> = new Observable();
 
-  constructor(private store: Store<AppState>) {}
+  @Output() deletePokemonEvent = new EventEmitter<any>();
 
-  ngOnInit(): void {
-    this.store.dispatch(loadCart());
-    this.store.dispatch(loadedCart());
+  constructor() {}
 
-    this.items$ = this.store.select(selectCart);
-  }
+  ngOnInit(): void {}
 
   deletePokemon(pokemon: PokemonModel) {
-    this.store.dispatch(removeToCart({ pokemon }));
+    this.deletePokemonEvent.emit(pokemon);
   }
 }
