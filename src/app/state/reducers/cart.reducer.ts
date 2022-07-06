@@ -28,13 +28,16 @@ export const cartReducer = createReducer(
     };
   }),
   on(addToCart, (state, { pokemon }) => {
+    let pokemonCopy = { ...pokemon, isAdded: true };
+
     return {
       ...state,
       loading: false,
       error: false,
       pokemons: [
         ...state.pokemons.filter((pk) => pk.name !== pokemon.name),
-        ...[{ ...pokemon, isAdded: true }],
+        pokemonCopy,
+        //...[{ ...pokemon, isAdded: true }],
       ],
     };
   }),
