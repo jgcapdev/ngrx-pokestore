@@ -34,7 +34,7 @@ export const cartReducer = createReducer(
       error: false,
       pokemons: [
         ...state.pokemons.filter((pk) => pk.name !== pokemon.name),
-        ...[pokemon],
+        ...[{ ...pokemon, isAdded: true }],
       ],
     };
   }),
