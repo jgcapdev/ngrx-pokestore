@@ -17,6 +17,8 @@ import { cartReducer } from './state/reducers/cart.reducer';
 import { pokemonsReducer } from './state/reducers/pokemons.reducer';
 import { EffectsFeatureModule, EffectsModule } from '@ngrx/effects';
 import { PokemonsEffects } from './state/effects/pokemons.effects';
+import { PokemonContainerComponent } from './containers/pokemon-container/pokemon-container.component';
+import { CartContainerComponent } from './containers/cart-container/cart-container.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +29,8 @@ import { PokemonsEffects } from './state/effects/pokemons.effects';
     HomeComponent,
     PageNotFoundComponent,
     CartComponent,
+    PokemonContainerComponent,
+    CartContainerComponent,
   ],
   imports: [
     BrowserModule,

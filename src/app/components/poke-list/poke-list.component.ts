@@ -1,14 +1,5 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Store } from '@ngrx/store';
-import { AppState } from 'src/app/state/app.state';
-import {
-  selectError,
-  selectListPokemons,
-  selectLoading,
-} from 'src/app/state/selectors/pokemons.selectors';
-import { loadPokemons } from 'src/app/state/actions/pokemon.actions';
-import { addToCart } from 'src/app/state/actions/cart.actions';
 
 @Component({
   selector: 'app-poke-list',
@@ -16,19 +7,18 @@ import { addToCart } from 'src/app/state/actions/cart.actions';
   styleUrls: ['./poke-list.component.css'],
 })
 export class PokeListComponent implements OnInit {
-  loading$: Observable<boolean> = this.store.select(selectLoading);
-  error$: Observable<boolean> = this.store.select(selectError);
-  pokemons$: Observable<any> = new Observable();
-  cart$: Observable<any> = new Observable();
+  @Input() loading$: Observable<boolean> = new Observable();
+  @Input() error$: Observable<boolean> = new Observable();
+  @Input() pokemons$: Observable<any> = new Observable();
+  @Input() cart$: Observable<any> = new Observable();
 
-  constructor(private store: Store<AppState>) {}
+  @Output() addPokemonEvent = new EventEmitter<any>();
 
-  ngOnInit(): void {
-    this.store.dispatch(loadPokemons());
-    this.pokemons$ = this.store.select(selectListPokemons);
-  }
+  constructor() {}
+
+  ngOnInit(): void {}
 
   addPokemon(pokemon: any) {
-    this.store.dispatch(addToCart({ pokemon }));
+    this.addPokemonEvent.emit(pokemon);
   }
 }
