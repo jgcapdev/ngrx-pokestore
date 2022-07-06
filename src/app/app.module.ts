@@ -19,6 +19,8 @@ import { EffectsFeatureModule, EffectsModule } from '@ngrx/effects';
 import { PokemonsEffects } from './state/effects/pokemons.effects';
 import { PokemonContainerComponent } from './containers/pokemon-container/pokemon-container.component';
 import { CartContainerComponent } from './containers/cart-container/cart-container.component';
+import { HomeContainerComponent } from './containers/home-container/home-container.component';
+import { NavContainerComponent } from './containers/nav-container/nav-container.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +33,8 @@ import { CartContainerComponent } from './containers/cart-container/cart-contain
     CartComponent,
     PokemonContainerComponent,
     CartContainerComponent,
+    HomeContainerComponent,
+    NavContainerComponent,
   ],
   imports: [
     BrowserModule,

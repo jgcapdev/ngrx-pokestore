@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/state/app.state';
 import { selectItems } from 'src/app/state/selectors/cart.selectors';
@@ -9,13 +9,9 @@ import { selectItems } from 'src/app/state/selectors/cart.selectors';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
-  counter: number = 0;
+  @Input() counter: number = 0;
 
-  constructor(private store: Store<AppState>) {}
+  constructor() {}
 
-  ngOnInit(): void {
-    this.store.select(selectItems).subscribe((item) => {
-      this.counter = item;
-    });
-  }
+  ngOnInit(): void {}
 }
