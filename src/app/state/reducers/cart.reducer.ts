@@ -28,7 +28,7 @@ export const cartReducer = createReducer(
     };
   }),
   on(addToCart, (state, { pokemon }) => {
-    let pokemonCopy = { ...pokemon, isAdded: true };
+    let pokemonCopy = { ...pokemon, quantity: 1, isAdded: true };
 
     return {
       ...state,

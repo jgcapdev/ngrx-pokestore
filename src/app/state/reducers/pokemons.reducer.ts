@@ -1,4 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
+import { PokemonModel } from 'src/app/core/models/Pokemon.interface';
 import { PokeStore } from 'src/app/core/models/pokemons.state';
 import {
   loadedPokemons,
@@ -18,7 +19,19 @@ export const pokemonsReducer = createReducer(
     return { ...state, loading: true, error: false };
   }),
   on(loadedPokemons, (state, { pokemons }) => {
-    return { ...state, loading: false, error: false, pokemons };
+    let pokeObj: PokemonModel[] = [];
+    pokemons.forEach((pokemon) => {
+      let poke = {
+        name: pokemon.name,
+        url: pokemon.url,
+        quantity: 0,
+        isAdded: false,
+      };
+
+      pokeObj.push(poke);
+    });
+
+    return { ...state, loading: false, error: false, pokemons: pokeObj };
   }),
   on(loadedPokemonsError, (state) => {
     return { ...state, loading: false, error: true };
