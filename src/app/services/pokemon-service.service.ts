@@ -8,7 +8,10 @@ export class PokemonServiceService {
   constructor(private http: HttpClient) {}
 
   getPokemons() {
-    console.log('aqui');
     return this.http.get('https://pokeapi.co/api/v2/pokemon');
+  }
+
+  getPokemonImage(id: number) {
+    return this.http.get(`https://pokeapi.co/api/v2/pokemon/${id}`);
   }
 }

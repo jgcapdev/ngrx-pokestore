@@ -1,10 +1,12 @@
 <h1 class="text-center">Cart</h1>
 
-<b class="text-center" *ngIf="loading$ | async">Cargando...</b>
-<b class="text-center" *ngIf="error$ | async">Se ha producido un error</b>
+<div class="text-center">
+  <b *ngIf="loading$ | async">Cargando...</b>
+  <b *ngIf="error$ | async">Se ha producido un error</b>
+</div>
 
-<p class="text-center display-4" *ngIf="(items$ | async)?.length == 0">
-  Your car is empty. Let's start adding some pokemons!
+<p class="text-center display-5" *ngIf="(items$ | async)?.length == 0">
+  Your car is empty. Let's start by adding some pokemons!
 </p>
 
 <table class="table table-striped" *ngIf="(items$ | async)?.length != 0">
