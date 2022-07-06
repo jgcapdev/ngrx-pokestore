@@ -4,8 +4,6 @@ import { EMPTY } from 'rxjs';
 import { map, mergeMap, catchError } from 'rxjs/operators';
 import { PokemonServiceService } from 'src/app/services/pokemon-service.service';
 
-let pokemonObj = {};
-
 @Injectable()
 export class PokemonsEffects {
   loadPokemons$ = createEffect(() =>

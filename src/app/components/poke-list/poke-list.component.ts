@@ -10,7 +10,6 @@ export class PokeListComponent implements OnInit {
   @Input() loading$: Observable<boolean> = new Observable();
   @Input() error$: Observable<boolean> = new Observable();
   @Input() pokemons$: Observable<any> = new Observable();
-  @Input() cart$: Observable<any> = new Observable();
 
   @Output() addPokemonEvent = new EventEmitter<any>();
 

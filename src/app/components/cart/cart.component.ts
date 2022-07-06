@@ -8,7 +8,6 @@ import { PokemonModel } from 'src/app/core/models/Pokemon.interface';
   styleUrls: ['./cart.component.css'],
 })
 export class CartComponent implements OnInit {
-  @Input() cart$: Observable<any> = new Observable();
   @Input() items$: Observable<any> = new Observable();
   @Input() loading$: Observable<boolean> = new Observable();
   @Input() error$: Observable<boolean> = new Observable();

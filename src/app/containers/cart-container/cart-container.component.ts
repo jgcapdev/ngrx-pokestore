@@ -20,7 +20,6 @@ import { PokemonModel } from 'src/app/core/models/Pokemon.interface';
   styleUrls: ['./cart-container.component.css'],
 })
 export class CartContainerComponent implements OnInit {
-  cart$: Observable<any> = new Observable();
   items$: Observable<any> = new Observable();
   loading$: Observable<boolean> = this.store.select(selectLoading);
   error$: Observable<boolean> = this.store.select(selectError);

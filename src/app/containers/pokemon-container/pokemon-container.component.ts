@@ -19,7 +19,7 @@ export class PokemonContainerComponent implements OnInit {
   loading$: Observable<boolean> = this.store.select(selectLoading);
   error$: Observable<boolean> = this.store.select(selectError);
   pokemons$: Observable<any> = new Observable();
-  cart$: Observable<any> = new Observable();
+  isAdded$: Observable<boolean> = new Observable();
 
   constructor(private store: Store<AppState>) {}
 
