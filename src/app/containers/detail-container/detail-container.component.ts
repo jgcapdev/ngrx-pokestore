@@ -33,7 +33,8 @@ export class DetailContainerComponent implements OnInit {
   }
 
   getPokemon() {
-    let data = this.store.dispatch(loadedPokemon({ name: this.name }));
+    this.store.dispatch(loadedPokemon({ name: this.name }));
+
     this.store.select(selectPokemon).subscribe((pk) => {
       this.pokemonData = {
         name: this.name,
