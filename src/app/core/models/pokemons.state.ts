@@ -4,4 +4,5 @@ export interface PokeStore {
   loading: boolean;
   error: boolean;
   pokemons: ReadonlyArray<PokemonModel>;
+  pokemon: any;
 }

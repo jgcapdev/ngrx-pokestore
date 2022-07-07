@@ -5,6 +5,8 @@ import { ActivatedRoute } from '@angular/router';
 import { AppState } from 'src/app/state/app.state';
 import { Observable } from 'rxjs';
 import { PokemonServiceService } from 'src/app/services/pokemon-service.service';
+import { loadedPokemon } from 'src/app/state/actions/pokemon.actions';
+import { selectPokemon } from 'src/app/state/selectors/pokemons.selectors';
 
 @Component({
   selector: 'app-detail-container',
@@ -31,10 +33,11 @@ export class DetailContainerComponent implements OnInit {
   }
 
   getPokemon() {
-    this.pokemonService.getPokemon(this.name).subscribe((poke: any) => {
+    let data = this.store.dispatch(loadedPokemon({ name: this.name }));
+    this.store.select(selectPokemon).subscribe((pk) => {
       this.pokemonData = {
         name: this.name,
-        image: poke.sprites.front_default,
+        image: pk?.pokemon?.sprites.front_default,
       };
     });
   }

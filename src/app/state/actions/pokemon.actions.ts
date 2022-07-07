@@ -10,8 +10,13 @@ export const loadedPokemons = createAction(
 );
 
 export const loadedPokemon = createAction(
-  '[Pokemon List] Loaded success',
+  '[Pokemon List] Loaded pokemon success',
   props<{ name: string }>()
+);
+
+export const getPokemon = createAction(
+  '[Pokemon List] Get pokemon',
+  props<{ pokemon: any }>()
 );
 
 export const loadedPokemonsError = createAction('[Pokemon List] Loaded error');

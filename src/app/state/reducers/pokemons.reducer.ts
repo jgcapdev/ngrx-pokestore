@@ -5,12 +5,14 @@ import {
   loadedPokemons,
   loadPokemons,
   loadedPokemonsError,
+  getPokemon,
 } from '../actions/pokemon.actions';
 
 export const initialState: PokeStore = {
   loading: false,
   error: false,
   pokemons: [],
+  pokemon: null,
 };
 
 export const pokemonsReducer = createReducer(
@@ -35,5 +37,11 @@ export const pokemonsReducer = createReducer(
   }),
   on(loadedPokemonsError, (state) => {
     return { ...state, loading: false, error: true };
+  }),
+  on(getPokemon, (state, { pokemon }) => {
+    return {
+      ...state,
+      pokemon: pokemon,
+    };
   })
 );

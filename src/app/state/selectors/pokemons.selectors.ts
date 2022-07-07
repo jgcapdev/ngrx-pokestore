@@ -24,3 +24,10 @@ export const selectError = createSelector(
     return state.error;
   }
 );
+
+export const selectPokemon = createSelector(
+  selectPokemonsFeature,
+  (state: PokeStore) => {
+    return state.pokemon;
+  }
+);
