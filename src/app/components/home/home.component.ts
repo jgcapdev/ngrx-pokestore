@@ -1,7 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { AppState } from 'src/app/state/app.state';
-import { selectItems } from 'src/app/state/selectors/cart.selectors';
 
 @Component({
   selector: 'app-home',

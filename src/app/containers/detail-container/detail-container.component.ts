@@ -4,7 +4,6 @@ import { ActivatedRoute } from '@angular/router';
 
 import { AppState } from 'src/app/state/app.state';
 import { Observable } from 'rxjs';
-import { PokemonServiceService } from 'src/app/services/pokemon-service.service';
 import { loadedPokemon } from 'src/app/state/actions/pokemon.actions';
 import { selectPokemon } from 'src/app/state/selectors/pokemons.selectors';
 
@@ -18,11 +17,7 @@ export class DetailContainerComponent implements OnInit {
   pokemonData: any = {};
   pokemon$: Observable<any> = new Observable();
 
-  constructor(
-    private store: Store<AppState>,
-    private route: ActivatedRoute,
-    private pokemonService: PokemonServiceService
-  ) {}
+  constructor(private store: Store<AppState>, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
     this.route.params.subscribe((res) => {

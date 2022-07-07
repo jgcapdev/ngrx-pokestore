@@ -3,7 +3,7 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { EMPTY, throwError } from 'rxjs';
 import { map, mergeMap, catchError, switchMap } from 'rxjs/operators';
 import { PokemonServiceService } from 'src/app/services/pokemon-service.service';
-import { loadedPokemon, loadPokemon } from '../actions/pokemon.actions';
+import { loadedPokemon } from '../actions/pokemon.actions';
 
 @Injectable()
 export class PokemonsEffects {
