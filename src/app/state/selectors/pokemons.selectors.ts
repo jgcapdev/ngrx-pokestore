@@ -1,14 +1,16 @@
-import { createSelector } from '@ngrx/store';
+import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { PokeStore } from 'src/app/core/models/pokemons.state';
 import { AppState } from '../app.state';
+import { pokemonAdapter, PokemonState } from '../reducers/pokemons.reducer';
 
+export const getPokemonsState = createFeatureSelector<PokemonState>('pokemons');
 export const selectPokemonsFeature = (state: AppState) => state.pokemons;
 
+export const pokemonsSelectors = pokemonAdapter.getSelectors();
+
 export const selectListPokemons = createSelector(
-  selectPokemonsFeature,
-  (state: PokeStore) => {
-    return state.pokemons;
-  }
+  getPokemonsState,
+  pokemonsSelectors.selectAll
 );
 
 export const selectLoading = createSelector(

@@ -1,3 +1,4 @@
+import { createEntityAdapter, EntityState } from '@ngrx/entity';
 import { createReducer, on } from '@ngrx/store';
 import { PokemonModel } from 'src/app/core/models/Pokemon.interface';
 import { PokeStore } from 'src/app/core/models/pokemons.state';
@@ -15,8 +16,24 @@ export const initialState: PokeStore = {
   pokemon: null,
 };
 
+export interface PokemonState extends EntityState<PokemonModel> {
+  selectPokemonName: string | null;
+}
+
+export function selectPokemonName(p: PokemonModel): string {
+  return p.name;
+}
+
+export const pokemonAdapter = createEntityAdapter<PokemonModel>({
+  selectId: selectPokemonName,
+});
+
+export const initialStateE: PokemonState = pokemonAdapter.getInitialState({
+  selectPokemonName: '',
+});
+
 export const pokemonsReducer = createReducer(
-  initialState,
+  initialStateE,
   on(loadPokemons, (state) => {
     return { ...state, loading: true, error: false };
   }),
@@ -33,7 +50,8 @@ export const pokemonsReducer = createReducer(
       pokeObj.push(poke);
     });
 
-    return { ...state, loading: false, error: false, pokemons: pokeObj };
+    //return { ...state, loading: false, error: false, pokemons: pokeObj };
+    return pokemonAdapter.setAll(pokemons, state);
   }),
   on(loadedPokemonsError, (state) => {
     return { ...state, loading: false, error: true };
